@@ -1,0 +1,6 @@
+# Declare files will have LF line endings on checkout.
+* text=auto eol=lf
+
+# Declare files that will always have CRLF line endings on checkout.
+*.{cmd,[cC][mM][dD]} text eol=crlf   # .cmd files
+*.{bat,[bB][aA][tT]} text eol=crlf   # .bat files
