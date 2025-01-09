@@ -46,6 +46,27 @@ const resolvers = {
     reviews(parent) {
       return db.reviews.filter(reviews => reviews.author_id === parent.id)
     }
+  },
+  Mutation: {
+    addGame(_, args) {
+      const newId = db.games.reduce((maxId, game) => Math.max(maxId, game.id), 0) + 1
+      const newGame = { id: newId, ...args.game }
+      db.games.push(newGame)
+
+      return newGame
+    },
+    updateGame(_, args) {
+      db.games = db.games.map(game =>
+        game.id === args.id ? { ...game, ...args.edits } : game
+      )
+
+      return db.games.find(game => game.id === args.id)
+    },
+    deleteGame(_, args) {
+      db.games = db.games.filter(game => game.id !== args.id)
+
+      return db.games
+    }
   }
 };
 
