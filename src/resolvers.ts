@@ -4,6 +4,7 @@ import db from './_db.js';
 export const resolvers = {
   // match the Query type in schema.js
   Query: {
+    // A resolver can optionally accept four positional arguments: (parent, args, contextValue, info)
     games() {
       return db.games
     },
@@ -43,7 +44,7 @@ export const resolvers = {
   },
   Mutation: {
     addGame(_, args) {
-      const newId = db.games.reduce((maxId, game) => Math.max(maxId, game.id), 0) + 1
+      const newId = db.games.reduce((maxId, game) => Math.max(maxId, Number(game.id)), 0) + 1
       const newGame = { id: String(newId), ...args.game }
       db.games.push(newGame)
 
