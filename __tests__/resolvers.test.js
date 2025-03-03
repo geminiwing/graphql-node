@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
-import { typeDefs } from '../schema.js';
-import { resolvers } from '../resolvers.js';
-import db from '../_db.js';
+import { typeDefs } from '../dist/schema.js';
+import { resolvers } from '../dist/resolvers.js';
+import db from '../dist/_db.js';
 
 const server = new ApolloServer({
   typeDefs,
